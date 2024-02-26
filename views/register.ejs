@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+	<title>Login</title>
+	<meta charset ="utf-8">
+	<meta name ="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<!-- <link href="css/global.css" type="text/css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="/css/login.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('/img/bg.jpeg'); /* Replace 'your-image.jpg' with the path to your image */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* This keeps the background fixed while scrolling */
+            font-family: Arial, sans-serif;
+        }
+
+        /* Add additional styles for your content here */
+        .content {
+            text-align: center;
+            padding: 100px;
+            color: #fff;
+        }
+        .text-color {
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    
+
+
+<div class="container-fluid bg">
+    <div class = "row">
+        <div class= "col-md-4 col-sm-4 col-xs-12"></div>
+        <div class = "col-md-4 col-sm-4 col xs-12">
+<form action="" method="POST" enctype="multipart/form-data" onsubmit="return validate()" class="form-container">
+    <h2>Registration Form</h2>
+    <div class="form-group">
+    <input type="text" name="name" placeholder="Enter Name"  id="username" class="form-control" required>
+    </div>
+    <span id="usererror" class="text-danger"></span>
+    
+
+    <div class="form-group">
+    <input type="email" name="email" class="form-control" placeholder="Enter Email" required>
+    
+   </div>
+
+    <!-- <input type="file" name="image" required>
+    <br> -->
+    <div class="form-group">
+    <input type="password" name="password" id="pwd" class="form-control" placeholder="Enter Password" required>
+</div>
+<span id="passworderror" class="text-danger"></span>
+
+<div class="form-group">
+    <i class="fa-solid fa-lock"></i>
+    <input type="password" name="ConfirmPassword" placeholder="Confirm Password" class="form-control" id="cPwd" required>
+  </div>
+  <span id="matchError" class="text-danger"></span>
+
+
+   <input type="submit" value="Register" class="text-color"> 
+    <% 
+    if(typeof message !== "undefined"){
+        %>
+        <p style="color: green;"><%= message %></p>
+        <%
+    }
+%> 
+</form>
+</div>
+</div>
+
+
+<script>
+    function validate() {
+      var user = document.getElementById("username").value;
+      var pwd = document.getElementById("pwd").value;
+      var cPwd = document.getElementById("cPwd").value;
+      
+      var reg =  /^[a-zA-Z]{6,}$/;
+      var reg1 = /^[a-zA-Z0-9]{6,}$/;
+
+      if(user.match(reg)) {
+        document.getElementById("usererror").innerHTML="";
+      } else {
+          if(user.length < 6) {
+            document.getElementById("usererror").innerHTML = "username should contain atleast 6 characters ";
+            return false;
+          } else {
+            document.getElementById("usererror").innerHTML = "username should contain only alphabets";
+            return false;
+          }
+        
+      }
+
+      if (pwd.match(reg1)) {
+          document.getElementById("passworderror").innerHTML = "";
+      }
+      else {
+        if(pwd.length < 6) {
+          document.getElementById("passworderror").innerHTML = "password should contain atleast 6 characters";
+          return false;
+        } else {
+          document.getElementById("passworderror").innerHTML = "password should contain only alpha numeric characters";
+          return false;
+        }
+      }
+
+      if(pwd != cPwd) {
+        document.getElementById("matchError").innerHTML = "passwords should match";
+        return false;
+      }
+
+
+    }
+  </script>
+
+</body>
+</body>
